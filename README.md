@@ -14,6 +14,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.Reimnop:PGen:1.0.0-1.20.1'
+    implementation 'com.github.Reimnop:PGen:1.0.1-1.20.1'
 }
 ```
