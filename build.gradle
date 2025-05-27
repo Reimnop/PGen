@@ -5,6 +5,7 @@ plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
+apply plugin: 'maven-publish'
 
 group = mod_group_id
 version = mod_version
@@ -15,6 +16,7 @@ base {
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(17)
+    withSourcesJar()
 }
 
 minecraft {
@@ -192,4 +194,16 @@ tasks.named('jar', Jar).configure {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.archivesBaseName
+            version project.version
+            artifact jar
+            artifact sourcesJar
+        }
+    }
 }
