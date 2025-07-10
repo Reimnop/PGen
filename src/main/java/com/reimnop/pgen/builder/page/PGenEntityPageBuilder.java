@@ -1,14 +1,16 @@
 package com.reimnop.pgen.builder.page;
 
+import com.reimnop.pgen.data.PGenEntityDefinition;
 import com.reimnop.pgen.data.PGenMultiblock;
 import com.reimnop.pgen.data.page.PGenEntityPage;
 import com.reimnop.pgen.data.page.PGenMultiblockPage;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
 public class PGenEntityPageBuilder extends PGenPageBuilder<PGenEntityPageBuilder> {
 
-    public ResourceLocation entity;
+    public PGenEntityDefinition entity;
 
     @Nullable
     public Float scale;
@@ -28,14 +30,22 @@ public class PGenEntityPageBuilder extends PGenPageBuilder<PGenEntityPageBuilder
     @Nullable
     public String text;
 
-    public PGenEntityPageBuilder(String modId, ResourceLocation entity) {
+    public PGenEntityPageBuilder(String modId, PGenEntityDefinition entity) {
         super(modId);
         this.entity = entity;
     }
 
-    public PGenEntityPageBuilder withEntity(ResourceLocation entity) {
+    public PGenEntityPageBuilder withEntity(PGenEntityDefinition entity) {
         this.entity = entity;
         return this;
+    }
+
+    public PGenEntityPageBuilder withEntity(ResourceLocation entity) {
+        return withEntity(new PGenEntityDefinition(entity, null));
+    }
+
+    public PGenEntityPageBuilder withEntity(ResourceLocation entity, @Nullable CompoundTag nbtData) {
+        return withEntity(new PGenEntityDefinition(entity, nbtData));
     }
 
     public PGenEntityPageBuilder withScale(@Nullable Float scale) {

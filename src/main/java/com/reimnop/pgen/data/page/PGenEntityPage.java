@@ -2,12 +2,13 @@ package com.reimnop.pgen.data.page;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import com.reimnop.pgen.data.PGenEntityDefinition;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
 public class PGenEntityPage extends PGenPage {
 
-    public ResourceLocation entity;
+    public PGenEntityDefinition entity;
 
     @Nullable
     public Float scale;
@@ -28,7 +29,7 @@ public class PGenEntityPage extends PGenPage {
     public String text;
 
     public PGenEntityPage(
-            ResourceLocation entity,
+            PGenEntityDefinition entity,
             @Nullable Float scale,
             @Nullable Float offset,
             @Nullable Boolean rotate,

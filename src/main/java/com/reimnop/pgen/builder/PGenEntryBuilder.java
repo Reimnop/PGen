@@ -1,9 +1,11 @@
 package com.reimnop.pgen.builder;
 
 import com.reimnop.pgen.builder.page.*;
+import com.reimnop.pgen.data.PGenEntityDefinition;
 import com.reimnop.pgen.data.PGenEntry;
 import com.reimnop.pgen.data.page.PGenPage;
 import com.reimnop.pgen.data.page.PGenSpotlightPage;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 
@@ -129,14 +131,14 @@ public class PGenEntryBuilder {
         return addPage(builder.build());
     }
 
-    public PGenEntryBuilder addEntityPage(ResourceLocation entity, Consumer<PGenEntityPageBuilder> consumer) {
-        var builder = new PGenEntityPageBuilder(modId, entity);
+    public PGenEntryBuilder addEntityPage(ResourceLocation entity, CompoundTag nbtData, Consumer<PGenEntityPageBuilder> consumer) {
+        var builder = new PGenEntityPageBuilder(modId, new PGenEntityDefinition(entity, nbtData));
         consumer.accept(builder);
         return addPage(builder.build());
     }
 
     public PGenEntryBuilder addEntityPage(String entity, Consumer<PGenEntityPageBuilder> consumer) {
-        return addEntityPage(ResourceLocation.fromNamespaceAndPath(modId, entity), consumer);
+        return addEntityPage(ResourceLocation.fromNamespaceAndPath(modId, entity), null, consumer);
     }
 
     public PGenEntryBuilder addSpotlightPage(PGenSpotlightPage.Item item, Consumer<PGenSpotlightPageBuilder> consumer) {
