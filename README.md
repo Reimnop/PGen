@@ -14,6 +14,6 @@ repositories {
 }
 
 dependencies {
-    implementation fg.deobf('com.github.Reimnop:PGen:1.0.1-1.20.1')
+    implementation fg.deobf('com.github.Reimnop:PGen:1.1.0-1.20.1')
 }
 ```
